@@ -365,7 +365,7 @@ class APIConnection(object):
     # Use double curly-braces to tell Python that these variables shouldn't be expanded yet.
     QUERY_TEMPLATE = "{domain}/{{interface}}/{{command}}/{{version}}/".format(domain=QUERY_DOMAIN)
 
-    def __init__(self, api_key=None, settings={}):
+    def __init__(self, api_key=None, settings=None):
         """
         NOTE: APIConnection will soon be made deprecated by APIInterface.
 
@@ -381,6 +381,7 @@ class APIConnection(object):
                         caching is done in groups and retrieving one-by-one takes a while.
 
         """
+        settings = {} if settings is None else settings
         self.reset(api_key)
 
         self.precache = True
